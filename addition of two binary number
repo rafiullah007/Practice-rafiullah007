@@ -1,0 +1,14 @@
+def addBin(a , b) :
+  a , b = int(a,2) , int(b,2) #Converting to decemal 
+  while b:
+    NoCarry = a ^ b
+    Carry = (a & b) << 1
+    a , b = NoCarry , Carry
+  return bin(a) [2:] # Convert result back to binary (remove '0b')
+
+# Take binary string inputs
+a = input("first binary number: ")
+b = input("Enter second binary number: ")
+
+# Output in  binary 
+print(addBin(a, b))
