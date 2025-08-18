@@ -1,6 +1,6 @@
 #include <iostream>
-#include <cmath> // for abs()
-#include <algorithm> // for sort()
+#include <cmath>
+#include <algorithm> 
 using namespace std;
 
 int main() {
@@ -8,18 +8,18 @@ int main() {
     cout << "Enter number of disk requests: ";
     cin >> n;
 
-    int requests[100];  // max 100 requests
+    int a[100];  
     cout << "Enter the disk requests:\n";
     for (int i = 0; i < n; i++) {
-        cin >> requests[i];
+        cin >> a[i];
     }
 
     // Create a copy to sort just for display (optional)
-    int sorted_requests[100];
+    int sort_a[100];
     for (int i = 0; i < n; i++) {
-        sorted_requests[i] = requests[i];
+        sort_a[i] = a[i];
     }
-    sort(sorted_requests, sorted_requests + n);
+    sort(sort_a, sort_a + n);
 
     int head;
     cout << "Enter initial head position: ";
@@ -28,9 +28,9 @@ int main() {
     bool visited[100] = {false};  // to mark which requests have been processed
     int total_seek = 0;
 
-    cout << "\nSorted Requests (for reference): ";
+    cout << "\nSorted Requests : ";
     for (int i = 0; i < n; i++) {
-        cout << sorted_requests[i] << " ";
+        cout << sort_a[i] << " ";
     }
     cout << "\n";
 
@@ -43,7 +43,7 @@ int main() {
         // Find the nearest unvisited request
         for (int j = 0; j < n; j++) {
             if (!visited[j]) {
-                if (nearest_index == -1 || abs(requests[j] - head) < abs(requests[nearest_index] - head)) {
+                if (nearest_index == -1 || abs(a[j] - head) < abs(a[nearest_index] - head)) {
                     nearest_index = j;
                 }
             }
@@ -51,14 +51,14 @@ int main() {
 
         // Move head to the nearest request
         visited[nearest_index] = true;
-        total_seek += abs(requests[nearest_index] - head);
-        head = requests[nearest_index];
+        total_seek += abs(a[nearest_index] - head);
+        head = a[nearest_index];
 
         cout << head << " ";
     }
 
     cout << "\nTotal Number of Seek Operations: " << n;
-    cout << "\nTotal Seek Distance: " << total_seek << endl;
+    cout << "\nAbsolute Distance: " << total_seek << endl;
 
     return 0;
 }
